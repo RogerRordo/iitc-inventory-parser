@@ -420,7 +420,7 @@ ${thisPlugin.keyCount.map((el) => {
             $.each(portal.details, function (cap, count) {
                 portKey.capsule = (cap === 'general') ? '' : cap;
                 portKey.count = count;
-                dataArray.push(portKey);
+                dataArray.push(JSON.parse(JSON.stringify(portKey))); // deepcopy
             });
         });
         thisPlugin.downloadCSV(dataArray);
