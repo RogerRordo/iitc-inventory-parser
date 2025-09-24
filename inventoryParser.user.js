@@ -2,12 +2,12 @@
 // @id              inventoryParser
 // @name            IITC Plugin: Inventory Parser
 // @category        Info
-// @version         0.0.5
-// @namespace	    https://github.com/633KYN35D/iitc-inventory-parser
-// @downloadURL	    https://github.com/633KYN35D/iitc-inventory-parser/raw/main/inventoryParser.user.js
-// @homepageURL	    https://github.com/633KYN35D/iitc-inventory-parser/
+// @version         1.0.0.5
+// @namespace	    https://github.com/RogerRordo/iitc-inventory-parser
+// @downloadURL	    https://github.com/RogerRordo/iitc-inventory-parser/raw/main/inventoryParser.user.js
+// @homepageURL	    https://github.com/RogerRordo/iitc-inventory-parser/
 // @description     Parse Inventory from Ingress
-// @author          633KYN35D with significant code from EisFrei
+// @author          RogerRordo & 633KYN35D with significant code from EisFrei
 // @include		    https://intel.ingress.com/*
 // @match		    https://intel.ingress.com/*
 // @grant		    none
@@ -413,7 +413,7 @@ ${thisPlugin.keyCount.map((el) => {
     thisPlugin.downloadKeys = function () {
         var dataArray = [];
         $.each(thisPlugin.keyMap, function (idx, portal) {
-            var portKey = portal.portalCoupler;
+            var portKey = JSON.parse(JSON.stringify(portal.portalCoupler));    // deepcopy
             portKey.portalLocation = portKey.portalLocation.split(',').map(e => {
                 return HexToSignedFloat(e);
             }).join(',')
